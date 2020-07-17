@@ -22,3 +22,19 @@ all: $(TARGET)
 
 clean:
 	rm -f *.exe *.obj *.log *.o $(TARGET) *.dat *.trn *.map *.wal
+
+
+# Following lines are for installing libspeedbee files into system.
+
+VER=v621
+PLATFORM=linux-x86_64
+
+speedbee-ts-trial-$(VER)-$(PLATFORM).tar.gz:
+	wget https://github.com/saltyster/speedbee-ts/releases/download/$(VER)/speedbee-ts-trial-$(VER)-$(PLATFORM).tar.gz
+
+get-libspeedbee: speedbee-ts-trial-$(VER)-$(PLATFORM).tar.gz
+
+install-libspeedbee: get-libspeedbee
+	tar xzvf speedbee-ts-trial-$(VER)-$(PLATFORM).tar.gz -C /usr/local
+	ldconfig
+
